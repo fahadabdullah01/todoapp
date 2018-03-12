@@ -15,13 +15,11 @@ module.exports = function (app, db) {
     app.get('/todo/all', (req, res) => {
         db.collection("todo").find({}).toArray(function(err, result) {
             if (err) throw err;
-            console.log(result);
             res.send(result);
             db.close();
         });
 
 });
-    app.param('id', "/^\\d{12,12}$/");
     app.get('/todo/:id', (req, res) => {
 
         const id = req.params.id;
